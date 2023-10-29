@@ -1,0 +1,1 @@
+# hono-nostr-auth-demo
