@@ -1,1 +1,8 @@
-# hono-nostr-auth-demo
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
