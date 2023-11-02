@@ -1,8 +1,7 @@
 import { Context, Hono } from "hono";
 import { nostrAuth, type NostrEvent } from "hono-nostr-auth";
+import { cors } from "hono/cors";
 import { NostrFetcher } from "nostr-fetch";
-
-
 
 type Variables = {
   nostrAuthEvent: NostrEvent;
@@ -10,6 +9,7 @@ type Variables = {
 
 const app = new Hono();
 
+app.use("*", cors());
 app.use("*", nostrAuth());
 
 const relays = ["wss://directory.yabu.me", "wss://relay.nostr.band"];
