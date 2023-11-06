@@ -6,8 +6,6 @@
 	$: npub = nip19.npubEncode(data.pubkey);
 </script>
 
-<h1>My Page</h1>
-
 {#if typeof data.profile?.['picture'] === 'string'}
 	<img class="picture" src={data.profile['picture']} alt="user avatar" />
 {/if}
@@ -23,15 +21,11 @@
 
 
 <style>
-  h1 {
-    margin: 0;
-    margin-bottom: 1em;
-  }
-
 	.picture {
 		width: 200px;
 		height: 200px;
 		border-radius: 50%;
+    margin-top: 1em;
 	}
 
   h2.hello {
