@@ -7,7 +7,7 @@
 	<p>...</p>
 {:then nostrExt}
 	{#if nostrExt !== undefined}
-		<a href="/mypage">Login With Nostr Extension (NIP-07)</a>
+		<a data-sveltekit-preload-data="tap" href="/mypage">Login With Nostr Extension (NIP-07)</a>
 	{:else}
 		<p>Nostr Extension Not Found</p>
 	{/if}
