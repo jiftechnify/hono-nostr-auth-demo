@@ -6,8 +6,7 @@ interface Window {
 }
 declare const window: Window;
 
-// TODO: replace by actual URL
-const nostrAuthApiEndpoint = 'https://example.com';
+const nostrAuthApiEndpoint = 'https://nha-demo.c-stellar.net/';
 
 type ApiResp = {
 	pubkey: string;

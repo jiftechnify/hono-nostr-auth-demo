@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"nip07-awaiter": "^0.2.1"
+		"nip07-awaiter": "^0.2.1",
+		"nostr-tools": "^1.17.0"
 	}
 }
