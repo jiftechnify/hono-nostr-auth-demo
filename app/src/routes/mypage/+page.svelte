@@ -22,8 +22,12 @@
 <a class="back" href="/">Back</a>
 
 
-
 <style>
+  h1 {
+    margin: 0;
+    margin-bottom: 1em;
+  }
+
 	.picture {
 		width: 200px;
 		height: 200px;
