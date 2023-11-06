@@ -13,7 +13,7 @@ type ApiResp = {
 	profile?: Record<string, unknown>;
 };
 
-export const load: PageLoad = async () => {
+export const load: PageLoad = async ({fetch}) => {
 	const authEv = await window.nostr.signEvent({
 		kind: 27235,
 		content: '',
