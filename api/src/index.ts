@@ -2,6 +2,7 @@ import { Context, Hono } from "hono";
 import { nostrAuth, type NostrEvent } from "hono-nostr-auth";
 import { cors } from "hono/cors";
 import { NostrFetcher } from "nostr-fetch";
+import { LoginBonusCount, LoginBonusData, updateLoginCount } from "./loginBonus";
 
 type Variables = {
   nostrAuthEvent: NostrEvent;
@@ -27,15 +28,6 @@ const getProfile = async (pubkey: string): Promise<Record<string, unknown> | und
   return profileEv === undefined ? undefined : JSON.parse(profileEv.content);
 };
 
-type LoginBonusCount = {
-  total: number;
-  consecutive: number;
-};
-
-type LoginBonusData = {
-  lastLoginDay: number;
-  count: LoginBonusCount;
-};
 
 type LoginResponse = {
   pubkey: string;
@@ -48,34 +40,6 @@ type LoginResponse = {
 
 const dateToUnixDay = (date: Date): number => Math.floor(date.getTime() / 1000 / 86400);
 const unixDayToUnixtimeSec = (d: number) => d * 86400;
-
-const updateLoginCount = (prevBonus: LoginBonusData | undefined, currDay: number): LoginBonusCount | undefined => {
-  if (prevBonus === undefined) {
-    return {
-      total: 1,
-      consecutive: 1,
-    };
-  }
-
-  const { total: prevTotal, consecutive: prevConsec } = prevBonus.count;
-
-  if (prevBonus.lastLoginDay === currDay) {
-    // already logged in today
-    return undefined;
-  }
-  if (prevBonus.lastLoginDay === currDay - 1) {
-    // a consecutive login
-    return {
-      total: prevTotal + 1,
-      consecutive: prevConsec + 1,
-    };
-  }
-  // not a consecutive login
-  return {
-    total: prevTotal + 1,
-    consecutive: 1,
-  };
-};
 
 app.get("/", async (c: Context<{ Variables: Variables; Bindings: Bindings }>) => {
   const currDay = dateToUnixDay(new Date());
