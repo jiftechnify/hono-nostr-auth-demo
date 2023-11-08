@@ -1,3 +1,4 @@
+import { PUBLIC_API_BASE_URL } from '$env/static/public';
 import type { Nip07 } from 'nostr-typedef';
 import type { PageLoad } from './$types';
 
@@ -6,7 +7,7 @@ interface Window {
 }
 declare const window: Window;
 
-const nostrAuthApiEndpoint = 'https://nha-demo.c-stellar.net/';
+const nostrAuthApiEndpoint = `${PUBLIC_API_BASE_URL}/`;
 
 type ApiResp = {
 	pubkey: string;
