@@ -33,6 +33,7 @@ type LoginResponse = {
   pubkey: string;
   profile?: Record<string, unknown>;
   bonus: {
+    isTodaysFirst: boolean;
     count: LoginBonusCount;
     nextTime: number;
   };
@@ -62,6 +63,7 @@ app.get("/", async (c: Context<{ Variables: Variables; Bindings: Bindings }>) =>
       pubkey,
       profile,
       bonus: {
+        isTodaysFirst: false,
         count: prevBonus!.count,
         nextTime,
       },
@@ -87,6 +89,7 @@ app.get("/", async (c: Context<{ Variables: Variables; Bindings: Bindings }>) =>
     pubkey,
     profile,
     bonus: {
+      isTodaysFirst: true,
       count: updatedCount,
       nextTime,
     },

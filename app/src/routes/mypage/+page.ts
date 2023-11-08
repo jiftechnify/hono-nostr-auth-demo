@@ -12,9 +12,17 @@ const nostrAuthApiEndpoint = `${PUBLIC_API_BASE_URL}/`;
 type ApiResp = {
 	pubkey: string;
 	profile?: Record<string, unknown>;
+	bonus: {
+    isTodaysFirst: true;
+		count: {
+			total: number;
+			consecutive: number;
+		};
+		nextTime: number;
+	};
 };
 
-export const load: PageLoad = async ({fetch}) => {
+export const load: PageLoad = async ({ fetch }) => {
 	const authEv = await window.nostr.signEvent({
 		kind: 27235,
 		content: '',
@@ -24,8 +32,10 @@ export const load: PageLoad = async ({fetch}) => {
 			['method', 'GET']
 		]
 	});
-	const resp = await fetch(nostrAuthApiEndpoint, { headers: { Authorization: `Nostr ${btoa(JSON.stringify(authEv))}` } });
-	const respObj = await resp.json() as ApiResp;
+	const resp = await fetch(nostrAuthApiEndpoint, {
+		headers: { Authorization: `Nostr ${btoa(JSON.stringify(authEv))}` }
+	});
+	const respObj = (await resp.json()) as ApiResp;
 
 	return respObj;
 };
