@@ -13,7 +13,7 @@ type ApiResp = {
 	pubkey: string;
 	profile?: Record<string, unknown>;
 	bonus: {
-    isTodaysFirst: true;
+		isTodaysFirst: true;
 		count: {
 			total: number;
 			consecutive: number;

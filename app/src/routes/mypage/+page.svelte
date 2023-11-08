@@ -12,9 +12,7 @@
 {/if}
 
 <h2 class="hello">
-	Hello, <span class="name"
-		>{data.profile?.['display_name'] ?? data.profile?.['name'] ?? 'Nostrich'}</span
-	>!
+	Hello, <span class="name">{data.profile?.['display_name'] ?? data.profile?.['name'] ?? 'Nostrich'}</span>!
 </h2>
 <p class="npub">({npub})</p>
 
